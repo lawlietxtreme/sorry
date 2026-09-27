@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>I'm Sorry ❤️</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: radial-gradient(
+                circle at center,
+                #3b0a18,
+                #170006 70%
+            );
+
+            color: white;
+            font-family: Georgia, "Times New Roman", serif;
+
+            overflow-x: hidden;
+            text-align: center;
+        }
+
+        /* Soft background glow */
+
+        body::before {
+            content: "";
+            position: fixed;
+
+            width: 600px;
+            height: 600px;
+
+            left: 50%;
+            top: 50%;
+
+            transform: translate(-50%, -50%);
+
+            background: rgba(255, 20, 80, 0.12);
+
+            filter: blur(100px);
+
+            border-radius: 50%;
+
+            z-index: -1;
+        }
+
+        /* Main container */
+
+        .container {
+            width: 90%;
+            max-width: 850px;
+
+            margin: auto;
+
+            padding: 70px 20px;
+        }
+
+        /* Small heading */
+
+        .small-text {
+            font-size: 18px;
+
+            letter-spacing: 5px;
+
+            text-transform: uppercase;
+
+            opacity: 0.75;
+
+            margin-bottom: 20px;
+        }
+
+        /* BIG I'M SORRY */
+
+        h1 {
+            font-size: clamp(70px, 14vw, 150px);
+
+            font-weight: 900;
+
+            line-height: 0.85;
+
+            letter-spacing: -5px;
+
+            background: linear-gradient(
+                180deg,
+                #ffffff,
+                #ff9ab0,
+                #ff174f
+            );
+
+            -webkit-background-clip: text;
+            background-clip: text;
+
+            color: transparent;
+
+            text-shadow:
+                0 0 40px rgba(255, 30, 80, 0.5);
+
+            animation: titlePulse 2s infinite;
+        }
+
+        /* Big heart */
+
+        .heart {
+            font-size: 85px;
+
+            margin: 35px 0;
+
+            display: inline-block;
+
+            filter:
+                drop-shadow(0 0 10px #ff174f)
+                drop-shadow(0 0 30px #ff174f);
+
+            animation:
+                heartBeat 1.2s infinite,
+                floating 3s ease-in-out infinite;
+        }
+
+        /* Divider */
+
+        .divider {
+            width: 100px;
+            height: 2px;
+
+            background: #ff4268;
+
+            margin: 30px auto;
+
+            box-shadow:
+                0 0 15px #ff174f;
+        }
+
+        /* Message */
+
+        .message {
+            max-width: 700px;
+
+            margin: 30px auto;
+
+            font-size: 21px;
+
+            line-height: 1.9;
+
+            color: #ffe5eb;
+        }
+
+        .message strong {
+            color: #ff718c;
+        }
+
+        /* Question */
+
+        .question {
+            font-size: 30px;
+
+            margin-top: 40px;
+
+            margin-bottom: 25px;
+        }
+
+        /* Buttons */
+
+        .buttons {
+            display: flex;
+
+            justify-content: center;
+
+            gap: 15px;
+
+            flex-wrap: wrap;
+        }
+
+        button {
+            border: none;
+
+            padding: 16px 30px;
+
+            border-radius: 50px;
+
+            font-size: 18px;
+
+            font-family: inherit;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+        .forgive {
+            background:
+                linear-gradient(
+                    45deg,
+                    #ff174f,
+                    #ff6685
+                );
+
+            color: white;
+
+            box-shadow:
+                0 0 25px rgba(255, 23, 79, 0.5);
+        }
+
+        .forgive:hover {
+            transform: scale(1.08);
+
+            box-shadow:
+                0 0 40px rgba(255, 23, 79, 0.9);
+        }
+
+        .not-yet {
+            background: transparent;
+
+            border: 1px solid #ff718c;
+
+            color: #ffb4c2;
+        }
+
+        .not-yet:hover {
+            background:
+                rgba(255, 50, 90, 0.1);
+        }
+
+        /* Response */
+
+        #response {
+            margin-top: 30px;
+
+            font-size: 25px;
+
+            color: #ff91a8;
+
+            min-height: 40px;
+        }
+
+        /* Floating hearts */
+
+        .floating-heart {
+            position: fixed;
+
+            bottom: -50px;
+
+            pointer-events: none;
+
+            z-index: 10;
+
+            animation: rise linear forwards;
+        }
+
+        /* Animations */
+
+        @keyframes rise {
+
+            0% {
+                transform:
+                    translateY(0)
+                    scale(0.5)
+                    rotate(0deg);
+
+                opacity: 0;
+            }
+
+            20% {
+                opacity: 0.9;
+            }
+
+            100% {
+                transform:
+                    translateY(-110vh)
+                    scale(1.5)
+                    rotate(360deg);
+
+                opacity: 0;
+            }
+        }
+
+        @keyframes heartBeat {
+
+            0%, 100% {
+                transform: scale(1);
+            }
+
+            15% {
+                transform: scale(1.2);
+            }
+
+            30% {
+                transform: scale(1);
+            }
+
+            45% {
+                transform: scale(1.15);
+            }
+        }
+
+        @keyframes floating {
+
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        @keyframes titlePulse {
+
+            0%, 100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.02);
+            }
+        }
+
+        /* Mobile */
+
+        @media (max-width: 600px) {
+
+            .container {
+                padding: 50px 15px;
+            }
+
+            .small-text {
+                font-size: 12px;
+                letter-spacing: 3px;
+            }
+
+            .message {
+                font-size: 17px;
+                line-height: 1.8;
+            }
+
+            .heart {
+                font-size: 65px;
+            }
+
+            .question {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="small-text">
+            From my heart to yours
+        </div>
+
+
+        <h1>
+            I'M<br>
+            SORRY
+        </h1>
+
+
+        <div class="heart">
+            ❤️
+        </div>
+
+
+        <div class="divider"></div>
+
+
+        <p class="message">
+
+            I know that saying
+            <strong>"I'm sorry"</strong>
+            can never completely erase
+            the hurt I caused.
+
+            <br><br>
+
+            But if I could go back and change
+            that moment, I would do it
+            in a heartbeat.
+
+            <br><br>
+
+            Not because I want to avoid
+            the consequences,
+
+            but because
+            <strong>you mean far too much to me.</strong>
+
+            <br><br>
+
+            I'm sorry for the words I said,
+            for the things I did,
+
+            and most importantly,
+
+            <strong>
+                I'm sorry for making someone
+                I love feel hurt.
+            </strong>
+
+            <br><br>
+
+            I don't expect everything
+            to magically become okay.
+
+            I just want you to know that
+            <strong>
+                I truly regret hurting you.
+            </strong>
+
+            <br><br>
+
+            If I could turn back time,
+
+            I'd choose you.
+
+            I'd choose us.
+
+            And I'd choose to handle
+            everything differently.
+
+            <br><br>
+
+            Maybe these words aren't enough.
+
+            Maybe an "I'm sorry"
+            can't fix everything.
+
+            <br><br>
+
+            But I hope one day
+            you can look at me
+            and know that
+            <strong>
+                I really, truly mean it.
+            </strong>
+
+            <br><br>
+
+            <strong>
+                I'm sorry. ❤️
+            </strong>
+
+        </p>
+
+
+        <div class="divider"></div>
+
+
+        <div class="question">
+            Will you forgive me? 🥺❤️
+        </div>
+
+
+        <div class="buttons">
+
+            <button
+                class="forgive"
+                onclick="forgive()"
+            >
+                ❤️ I Forgive You
+            </button>
+
+
+            <button
+                class="not-yet"
+                onclick="notYet()"
+            >
+                💔 Not Yet...
+            </button>
+
+        </div>
+
+
+        <div id="response"></div>
+
+    </div>
+
+
+    <script>
+
+        /* Forgive button */
+
+        function forgive() {
+
+            document.getElementById("response").innerHTML =
+                "You have no idea how much that means to me. ❤️";
+
+            for (let i = 0; i < 40; i++) {
+
+                setTimeout(
+                    createHeart,
+                    i * 70
+                );
+
+            }
+        }
+
+
+        /* Not yet button */
+
+        function notYet() {
+
+            document.getElementById("response").innerHTML =
+                "I understand... I'll give you the time you need. ❤️‍🩹";
+
+        }
+
+
+        /* Create floating hearts */
+
+        function createHeart() {
+
+            const heart =
+                document.createElement("div");
+
+            heart.className =
+                "floating-heart";
+
+
+            const hearts = [
+                "❤️",
+                "💗",
+                "💕",
+                "💖",
+                "💘",
+                "💓"
+            ];
+
+
+            heart.innerHTML =
+                hearts[
+                    Math.floor(
+                        Math.random() *
+                        hearts.length
+                    )
+                ];
+
+
+            heart.style.left =
+                Math.random() * 100 + "vw";
+
+
+            heart.style.fontSize =
+                (15 + Math.random() * 30) + "px";
+
+
+            heart.style.animationDuration =
+                (4 + Math.random() * 5) + "s";
+
+
+            document.body.appendChild(heart);
+
+
+            setTimeout(() => {
+
+                heart.remove();
+
+            }, 9000);
+
+        }
+
+
+        /* Continuous floating hearts */
+
+        setInterval(
+            createHeart,
+            700
+        );
+
+    </script>
+
+</body>
+</html>
